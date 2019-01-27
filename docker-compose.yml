@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dbatoolv3:
+    image: ${DOCKER_REGISTRY-}dbatoolv3
+    build:
+      context: .\DBAToolV3
+      dockerfile: Dockerfile
