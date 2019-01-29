@@ -15,12 +15,12 @@ namespace DBAToolV3.Controllers
     public class ServerDatabasesController : Controller
     {
         private DBAToolV3Context db = new DBAToolV3Context();
-        private ServerDatabaseService _db = new ServerDatabaseService();
+        private ServerService _server = new ServerService();
 
         // GET: ServerDatabases
         public ActionResult Index(int? selectedServer)
         {
-            var servers = _db.GetAll();
+            var servers = _server.GetAll();
            // var servers = db.Servers.OrderBy(q => q.Name).ToList();
             ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", selectedServer);
 

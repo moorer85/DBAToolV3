@@ -172,10 +172,12 @@
     <Compile Include="Models\DBAToolV3Context.cs" />
     <Compile Include="Models\Interfaces\IDatabase.cs" />
     <Compile Include="Models\Interfaces\IEmployee.cs" />
+    <Compile Include="Models\Interfaces\IServer.cs" />
     <Compile Include="Models\Interfaces\IServerDatabase.cs" />
     <Compile Include="Models\Interfaces\IStatus.cs" />
     <Compile Include="Models\Service\DatabaseService.cs" />
     <Compile Include="Models\Service\ServerDatabaseService.cs" />
+    <Compile Include="Models\Service\ServerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
