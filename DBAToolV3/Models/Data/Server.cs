@@ -12,11 +12,11 @@ namespace DBAToolV3.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public int Memory { get; set; }
+        public int? Memory { get; set; }
 
-        public int CpuCore { get; set; }
+        public int? CpuCore { get; set; }
 
-        public float CpuSpeed { get; set; }
+        public float? CpuSpeed { get; set; }
 
         public DateTime PurchaseDate { get; set; } 
       
