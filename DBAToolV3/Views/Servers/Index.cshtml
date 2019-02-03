@@ -11,117 +11,76 @@
 
 </head>
 <body>
-    
 
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">DBA Tools</h1>
-                <p class="lead text-muted">The Database Administrstor Web Site supports the creation, maintenance and security of databsase services with the organization  </p>
-                <p>
-                    <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-                </p>
-            </div>
-        </section>
 
-    
+    <section class="jumbotron text-center">
         <div class="container">
+            <h1 class="jumbotron-heading">Servers</h1>
+            <p class="lead text-muted">List of Servers  </p>
+            <p>
+                <a href="/Servers/Create" class="btn btn-primary my-2">Add Server</a>
+                <a href="#" class="btn btn-secondary my-2">Help</a>
+            </p>
+        </div>
+    </section>
 
 
+    <div class="row">
 
+        <div class="col-md-6">   
+                <table class="table">
+                    <tr>
+                       <th>
+                           Icon
+                       </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Memory)
+                        </th>
 
-            <div class="col-lg-4">
+                        <th>
+                            
+                        </th>
+                    </tr>
 
-
-
-                <div class="card-body">
-                    <table class="table">
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Memory)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CpuCore)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CpuSpeed)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PurchaseDate)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ImageUrl)
-                            </th>
-                            <th></th>
+                            <td>
+                                <i class="far fa-address-book"></i>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Memory)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
                         </tr>
+                    }
 
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Memory)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CpuCore)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CpuSpeed)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PurchaseDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ImageUrl)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                </td>
-                            </tr>
-                        }
-
-                    </table>
-                </div>
-
-
-
-            </div>
-
-            <div class="row">
-
-
-
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-muted">9 mins</small>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-
+                </table>
+            
 
 
 
         </div>
-       
-    
 
-                            </body>
+        
+
+
+    </div>
+
+
+
+</body>
 
 
 </html>
