@@ -25,6 +25,7 @@ namespace DBAToolV3.Data.Models
         //public Employee BackupDBA { get; set; }
 
         public int NumberOfUsers { get; set; }
+        public int ServerId { get; set; }
         public virtual Server Server { get; set; }
 
 

@@ -23,7 +23,7 @@ namespace DBAToolV3.Data.Models
         public DatabaseStatus Status { get; set; }
         public string ImageUrl { get; set; }
 
-        public virtual IEnumerable<ServerDatabase> Databases { get; set; }
+        public virtual IEnumerable<ServerDatabase> ServerDatabases { get; set; }
 
 
 
