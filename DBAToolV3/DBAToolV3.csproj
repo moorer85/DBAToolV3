@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Content\bootstrap - Copy.css" />
     <Content Include="Content\fontawsome.css" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
