@@ -170,6 +170,14 @@
     <Compile Include="Migrations\201902040420493_m7.Designer.cs">
       <DependentUpon>201902040420493_m7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902050319401_m11.cs" />
+    <Compile Include="Migrations\201902050319401_m11.Designer.cs">
+      <DependentUpon>201902050319401_m11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902050321238_m112.cs" />
+    <Compile Include="Migrations\201902050321238_m112.Designer.cs">
+      <DependentUpon>201902050321238_m112.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Data\ServerDatabase.cs" />
     <Compile Include="Models\Data\Employee.cs" />
@@ -188,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Content\newboot.css" />
     <Content Include="Content\bootstrap - Copy.css" />
     <Content Include="Content\fontawsome.css" />
     <Content Include="webfonts\fa-brands-400.svg" />
@@ -334,6 +343,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902040420493_m7.resx">
       <DependentUpon>201902040420493_m7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902050319401_m11.resx">
+      <DependentUpon>201902050319401_m11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902050321238_m112.resx">
+      <DependentUpon>201902050321238_m112.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

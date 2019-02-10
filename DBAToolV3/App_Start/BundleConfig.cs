@@ -24,8 +24,8 @@ namespace DBAToolV3
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                       "~/Content/fontawesome.css",
-                      "~/Content/site.css"));
+                       "~/Content/fontawsome.css",
+                      "~/Content/Site.css"));
         }
     }
 }
