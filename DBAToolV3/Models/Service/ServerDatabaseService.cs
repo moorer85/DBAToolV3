@@ -13,19 +13,26 @@ namespace DBAToolV3.Models.Service
         private readonly DBAToolV3Context _context = new DBAToolV3Context();
 
 
-        public void Add(Server newServer)
+        public void Add(ServerDatabase newServerDatabase)
         {
-            throw new NotImplementedException();
+            _context.ServerDatabases.Add(newServerDatabase);
+            _context.SaveChanges();
         }
 
-        public Server Get(int id)
+        public ServerDatabase Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.ServerDatabases.Find(id);
         }
 
-        public IEnumerable<Server> GetAll()
+
+        public IEnumerable<ServerDatabase> GetAll()
         {
-            return _context.Servers;
+            return _context.ServerDatabases.ToList();
+        }
+
+        IEnumerable<ServerDatabase> IServerDatabase.GetAll(int serverid)
+        {
+            return _context.ServerDatabases.Where(d => d.ServerId == serverid);
         }
     }
 }

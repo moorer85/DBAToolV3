@@ -15,7 +15,7 @@ namespace DBAToolV3.Models
 
 
 
-        public virtual DbSet<ServerDatabase> Databases { get; set; }
+        public virtual DbSet<ServerDatabase> ServerDatabases { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Server> Servers { get; set; }
 

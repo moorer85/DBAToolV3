@@ -16,24 +16,24 @@ namespace DBAToolV3.Models.Service
 
         public void Add(ServerDatabase database)
         {
-            _context.Databases.Add(database);
+            _context.ServerDatabases.Add(database);
             _context.SaveChanges();
         }
 
         public void Delete(ServerDatabase database)
         {
-            _context.Databases.Remove(database);
+            _context.ServerDatabases.Remove(database);
             _context.SaveChanges();
         }
 
         public ServerDatabase Get(int id)
         {
-            return _context.Databases.FirstOrDefault(v => v.Id == id);
+            return _context.ServerDatabases.FirstOrDefault(v => v.Id == id);
         }
 
         public IEnumerable<ServerDatabase> GetAll()
         {
-            return _context.Databases;
+            return _context.ServerDatabases;
         }
 
         public void Update(ServerDatabase database)

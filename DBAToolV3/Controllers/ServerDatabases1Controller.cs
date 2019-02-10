@@ -18,7 +18,7 @@ namespace DBAToolV3.Controllers
         // GET: ServerDatabases1
         public ActionResult Index()
         {
-            var databases = db.Databases.Include(s => s.Server);
+            var databases = db.ServerDatabases.Include(s => s.Server);
             return View(databases.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServerDatabase serverDatabase = db.Databases.Find(id);
+            ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
             if (serverDatabase == null)
             {
                 return HttpNotFound();
@@ -53,7 +53,7 @@ namespace DBAToolV3.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Databases.Add(serverDatabase);
+                db.ServerDatabases.Add(serverDatabase);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,7 +69,7 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServerDatabase serverDatabase = db.Databases.Find(id);
+            ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
             if (serverDatabase == null)
             {
                 return HttpNotFound();
@@ -102,7 +102,7 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServerDatabase serverDatabase = db.Databases.Find(id);
+            ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
             if (serverDatabase == null)
             {
                 return HttpNotFound();
@@ -115,8 +115,8 @@ namespace DBAToolV3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ServerDatabase serverDatabase = db.Databases.Find(id);
-            db.Databases.Remove(serverDatabase);
+            ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
+            db.ServerDatabases.Remove(serverDatabase);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

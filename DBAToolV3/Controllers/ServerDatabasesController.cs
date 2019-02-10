@@ -14,8 +14,8 @@ namespace DBAToolV3.Controllers
 {
     public class ServerDatabasesController : Controller
     {
-        private DBAToolV3Context db = new DBAToolV3Context();
-        private ServerService _server = new ServerService();
+       private DBAToolV3Context db = new DBAToolV3Context();
+        private ServerDatabaseService _server = new ServerDatabaseService();
 
         // GET: ServerDatabases
         public ActionResult Index(int? selectedServer)
@@ -25,18 +25,21 @@ namespace DBAToolV3.Controllers
             ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", selectedServer);
 
 
-
-            return View(db.Databases.ToList());
+           // return View(_server.GetAll().d)
+            return View(db.ServerDatabases.ToList());
         }
 
         // GET: ServerDatabases/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServerDatabase serverDatabase = db.Databases.Find(id);
+
+
+            ServerDatabase serverDatabase = _server.Get(id);
+            // ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
             if (serverDatabase == null)
             {
                 return HttpNotFound();
@@ -59,7 +62,7 @@ namespace DBAToolV3.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Databases.Add(serverDatabase);
+                db.ServerDatabases.Add(serverDatabase);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -74,7 +77,7 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServerDatabase serverDatabase = db.Databases.Find(id);
+            ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
             if (serverDatabase == null)
             {
                 return HttpNotFound();
@@ -105,7 +108,7 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServerDatabase serverDatabase = db.Databases.Find(id);
+            ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
             if (serverDatabase == null)
             {
                 return HttpNotFound();
@@ -118,8 +121,8 @@ namespace DBAToolV3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ServerDatabase serverDatabase = db.Databases.Find(id);
-            db.Databases.Remove(serverDatabase);
+            ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
+            db.ServerDatabases.Remove(serverDatabase);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

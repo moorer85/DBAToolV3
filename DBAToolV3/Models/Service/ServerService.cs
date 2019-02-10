@@ -2,6 +2,7 @@
 using DBAToolV3.Models.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -13,17 +14,19 @@ namespace DBAToolV3.Models.Service
 
         public void Add(Server server)
         {
-            throw new NotImplementedException();
+            _context.Servers.Add(server);
+            _context.SaveChanges();
         }
 
         public void Delete(Server server)
         {
-            throw new NotImplementedException();
+            _context.Servers.Remove(server);
+            _context.SaveChanges();
         }
 
         public Server Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Servers.FirstOrDefault(v => v.Id == id);
         }
 
         public IEnumerable<Server> GetAll()
@@ -33,7 +36,8 @@ namespace DBAToolV3.Models.Service
 
         public void Update(Server server)
         {
-            throw new NotImplementedException();
+            _context.Entry(server).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

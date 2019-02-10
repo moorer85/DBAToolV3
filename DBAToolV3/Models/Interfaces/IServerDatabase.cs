@@ -8,9 +8,12 @@ namespace DBATool.Data
 {
     public interface IServerDatabase
     {
-       Server Get(int id);
-       IEnumerable<Server> GetAll();
-  
-       void Add(Server newServer);
+       ServerDatabase Get(int id);
+       IEnumerable<ServerDatabase> GetAll();
+
+        IEnumerable<ServerDatabase> GetAll(int serverid);
+
+
+        void Add(ServerDatabase serverdatabase);
     }
 }
