@@ -14,13 +14,14 @@ namespace DBAToolV3.Controllers
     public class ServerDatabases1Controller : Controller
     {
         private DBAToolV3Context db = new DBAToolV3Context();
+        private static  int _selectedServer = 1;
 
         // GET: ServerDatabases1
         [HttpGet]
         public ActionResult Index()
         {
             var servers = db.Servers;
-            ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", 1);
+            ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", _selectedServer);
             var serverDatabases = db.ServerDatabases.Include(s => s.Server);
             return View(serverDatabases.ToList());
         }
@@ -29,6 +30,7 @@ namespace DBAToolV3.Controllers
         {
             ViewBag.YouSelected = form["SelectedServers"];
             int YouSelected = Convert.ToInt32(ViewBag.YouSelected);
+            _selectedServer = YouSelected;
 
             var servers = db.Servers;
             ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", ViewBag.YouSelected);
@@ -54,7 +56,9 @@ namespace DBAToolV3.Controllers
         // GET: ServerDatabases1/Create
         public ActionResult Create()
         {
-            ViewBag.ServerId = new SelectList(db.Servers, "Id", "Name");
+        
+
+            ViewBag.ServerId = new SelectList(db.Servers, "Id", "Name",_selectedServer);
             return View();
         }
 

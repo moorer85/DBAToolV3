@@ -145,7 +145,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServerDatabases1Controller.cs" />
-    <Compile Include="Controllers\ServerDatabasesController.cs" />
     <Compile Include="Controllers\ServersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -303,11 +302,6 @@
     <Content Include="Views\Servers\Edit.cshtml" />
     <Content Include="Views\Servers\Index.cshtml" />
     <Content Include="Views\Servers\Index - Copy.cshtml" />
-    <Content Include="Views\ServerDatabases\Create.cshtml" />
-    <Content Include="Views\ServerDatabases\Delete.cshtml" />
-    <Content Include="Views\ServerDatabases\Details.cshtml" />
-    <Content Include="Views\ServerDatabases\Edit.cshtml" />
-    <Content Include="Views\ServerDatabases\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
