@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DBAToolV3.Data.Models
@@ -18,6 +19,7 @@ namespace DBAToolV3.Data.Models
 
         public float? CpuSpeed { get; set; }
 
+        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime PurchaseDate { get; set; } 
       
         public DatabaseStatus Status { get; set; }

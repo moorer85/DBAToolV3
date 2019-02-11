@@ -16,10 +16,24 @@ namespace DBAToolV3.Controllers
         private DBAToolV3Context db = new DBAToolV3Context();
 
         // GET: ServerDatabases1
+        [HttpGet]
         public ActionResult Index()
         {
-            var databases = db.ServerDatabases.Include(s => s.Server);
-            return View(databases.ToList());
+            var servers = db.Servers;
+            ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", 1);
+            var serverDatabases = db.ServerDatabases.Include(s => s.Server);
+            return View(serverDatabases.ToList());
+        }
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+            ViewBag.YouSelected = form["SelectedServers"];
+            int YouSelected = Convert.ToInt32(ViewBag.YouSelected);
+
+            var servers = db.Servers;
+            ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", ViewBag.YouSelected);
+            var serverDatabases = db.ServerDatabases.Where(d => d.ServerId == YouSelected).Include(s => s.Server);
+            return View(serverDatabases.ToList());
         }
 
         // GET: ServerDatabases1/Details/5

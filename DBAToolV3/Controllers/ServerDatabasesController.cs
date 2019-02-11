@@ -15,18 +15,18 @@ namespace DBAToolV3.Controllers
     public class ServerDatabasesController : Controller
     {
        private DBAToolV3Context db = new DBAToolV3Context();
-        private ServerDatabaseService _server = new ServerDatabaseService();
+        private ServerDatabaseService _serverdatabase = new ServerDatabaseService();
 
         // GET: ServerDatabases
         public ActionResult Index(int? selectedServer)
         {
-            var servers = _server.GetAll();
+            var servers = _serverdatabase.GetAll();
            // var servers = db.Servers.OrderBy(q => q.Name).ToList();
             ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", selectedServer);
 
 
-           // return View(_server.GetAll().d)
-            return View(db.ServerDatabases.ToList());
+            return View(_serverdatabase.GetAll());
+            //return View(db.ServerDatabases.ToList());
         }
 
         // GET: ServerDatabases/Details/5
@@ -38,7 +38,7 @@ namespace DBAToolV3.Controllers
             }
 
 
-            ServerDatabase serverDatabase = _server.Get(id);
+            ServerDatabase serverDatabase = _serverdatabase.Get(id);
             // ServerDatabase serverDatabase = db.ServerDatabases.Find(id);
             if (serverDatabase == null)
             {
