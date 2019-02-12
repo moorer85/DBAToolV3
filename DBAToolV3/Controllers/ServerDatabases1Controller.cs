@@ -8,11 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using DBAToolV3.Data.Models;
 using DBAToolV3.Models;
+using DBAToolV3.Models.Service;
 
 namespace DBAToolV3.Controllers
 {
     public class ServerDatabases1Controller : Controller
     {
+        private ServerDatabaseService _serverdatabase = new ServerDatabaseService();
         private DBAToolV3Context db = new DBAToolV3Context();
         private static  int _selectedServer = 1;
 
@@ -25,6 +27,12 @@ namespace DBAToolV3.Controllers
             var serverDatabases = db.ServerDatabases.Include(s => s.Server);
             return View(serverDatabases.ToList());
         }
+
+
+
+
+
+
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {

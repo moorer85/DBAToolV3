@@ -8,17 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using DBAToolV3.Data.Models;
 using DBAToolV3.Models;
+using DBAToolV3.Models.Service;
 
 namespace DBAToolV3.Controllers
 {
     public class ServersController : Controller
     {
-        private DBAToolV3Context db = new DBAToolV3Context();
+       // private DBAToolV3Context db = new DBAToolV3Context();
+        private ServerService _server = new ServerService();
 
         // GET: Servers
         public ActionResult Index()
         {
-            return View(db.Servers.ToList());
+            return View(_server.GetAll());
         }
 
         // GET: Servers/Details/5
@@ -28,7 +30,9 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Server server = db.Servers.Find(id);
+
+            Server server = _server.Get(id);
+            //Server server = db.Servers.Find(id);
             if (server == null)
             {
                 return HttpNotFound();
@@ -51,8 +55,10 @@ namespace DBAToolV3.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Servers.Add(server);
-                db.SaveChanges();
+                //  db.Servers.Add(server);
+                //  db.SaveChanges();
+                _server.Add(server);
+
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +72,7 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Server server = db.Servers.Find(id);
+            Server server = _server.Get(id);
             if (server == null)
             {
                 return HttpNotFound();
@@ -83,8 +89,11 @@ namespace DBAToolV3.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(server).State = EntityState.Modified;
-                db.SaveChanges();
+                // db.Entry(server).State = EntityState.Modified;
+                //  db.SaveChanges();
+                _server.Update(server);
+
+
                 return RedirectToAction("Index");
             }
             return View(server);
@@ -97,7 +106,7 @@ namespace DBAToolV3.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Server server = db.Servers.Find(id);
+            Server server = _server.Get(id);
             if (server == null)
             {
                 return HttpNotFound();
@@ -110,9 +119,8 @@ namespace DBAToolV3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Server server = db.Servers.Find(id);
-            db.Servers.Remove(server);
-            db.SaveChanges();
+            Server server = _server.Get(id);
+            _server.Delete(server);
             return RedirectToAction("Index");
         }
 
@@ -120,7 +128,7 @@ namespace DBAToolV3.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _server.Dispose();
             }
             base.Dispose(disposing);
         }

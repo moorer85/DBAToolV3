@@ -24,7 +24,12 @@ namespace DBAToolV3.Models.Service
             _context.SaveChanges();
         }
 
-        public Server Get(int id)
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
+
+        public Server Get(int? id)
         {
             return _context.Servers.FirstOrDefault(v => v.Id == id);
         }

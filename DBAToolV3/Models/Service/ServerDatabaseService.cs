@@ -30,6 +30,11 @@ namespace DBAToolV3.Models.Service
             return _context.ServerDatabases.ToList();
         }
 
+        public IEnumerable<Server> GetAllServers()
+        {
+            return _context.Servers.ToList();
+        }
+
         IEnumerable<ServerDatabase> IServerDatabase.GetAll(int serverid)
         {
             return _context.ServerDatabases.Where(d => d.ServerId == serverid);

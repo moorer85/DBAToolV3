@@ -10,10 +10,11 @@ namespace DBAToolV3.Models.Interfaces
     public interface IServer
     {
 
-        Server Get(int id);
+        Server Get(int? id);
         void Add(Server server);
         void Update(Server server);
         void Delete(Server server);
+        void Dispose();
 
         IEnumerable<Server> GetAll();
 
