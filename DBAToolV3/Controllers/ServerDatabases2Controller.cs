@@ -8,45 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using DBAToolV3.Data.Models;
 using DBAToolV3.Models;
-using DBAToolV3.Models.Service;
 
 namespace DBAToolV3.Controllers
 {
-    public class ServerDatabases1Controller : Controller
+    public class ServerDatabases2Controller : Controller
     {
-        private ServerDatabaseService _serverdatabase = new ServerDatabaseService();
         private DBAToolV3Context db = new DBAToolV3Context();
-        private static  int _selectedServer = 1;
 
-        // GET: ServerDatabases1
-        [HttpGet]
+        // GET: ServerDatabases2
         public ActionResult Index()
         {
-            var servers = db.Servers;
-            ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", _selectedServer);
-            var serverDatabases = db.ServerDatabases.Include(s => s.Server);
+            var serverDatabases = db.ServerDatabases.Include(s => s.Employee).Include(s => s.Server);
             return View(serverDatabases.ToList());
         }
 
-
-
-
-
-
-        [HttpPost]
-        public ActionResult Index(FormCollection form)
-        {
-            ViewBag.YouSelected = form["SelectedServers"];
-            int YouSelected = Convert.ToInt32(ViewBag.YouSelected);
-            _selectedServer = YouSelected;
-
-            var servers = db.Servers;
-            ViewBag.SelectedServers = new SelectList(servers, "ID", "Name", ViewBag.YouSelected);
-            var serverDatabases = db.ServerDatabases.Where(d => d.ServerId == YouSelected).Include(s => s.Server);
-            return View(serverDatabases.ToList());
-        }
-
-        // GET: ServerDatabases1/Details/5
+        // GET: ServerDatabases2/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -61,22 +37,20 @@ namespace DBAToolV3.Controllers
             return View(serverDatabase);
         }
 
-        // GET: ServerDatabases1/Create
+        // GET: ServerDatabases2/Create
         public ActionResult Create()
         {
-
             ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "Name");
-
-            ViewBag.ServerId = new SelectList(db.Servers, "Id", "Name",_selectedServer);
+            ViewBag.ServerId = new SelectList(db.Servers, "Id", "Name");
             return View();
         }
 
-        // POST: ServerDatabases1/Create
+        // POST: ServerDatabases2/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Size,NumberOfUsers,EmployeeId,ServerId")] ServerDatabase serverDatabase)
+        public ActionResult Create([Bind(Include = "Id,Name,Size,EmployeeId,NumberOfUsers,ServerId")] ServerDatabase serverDatabase)
         {
             if (ModelState.IsValid)
             {
@@ -85,11 +59,12 @@ namespace DBAToolV3.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "Name", serverDatabase.EmployeeId);
             ViewBag.ServerId = new SelectList(db.Servers, "Id", "Name", serverDatabase.ServerId);
             return View(serverDatabase);
         }
 
-        // GET: ServerDatabases1/Edit/5
+        // GET: ServerDatabases2/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,16 +76,17 @@ namespace DBAToolV3.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "Name", serverDatabase.EmployeeId);
             ViewBag.ServerId = new SelectList(db.Servers, "Id", "Name", serverDatabase.ServerId);
             return View(serverDatabase);
         }
 
-        // POST: ServerDatabases1/Edit/5
+        // POST: ServerDatabases2/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Size,NumberOfUsers,EmployeeId,ServerId")] ServerDatabase serverDatabase)
+        public ActionResult Edit([Bind(Include = "Id,Name,Size,EmployeeId,NumberOfUsers,ServerId")] ServerDatabase serverDatabase)
         {
             if (ModelState.IsValid)
             {
@@ -118,11 +94,12 @@ namespace DBAToolV3.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "Name", serverDatabase.EmployeeId);
             ViewBag.ServerId = new SelectList(db.Servers, "Id", "Name", serverDatabase.ServerId);
             return View(serverDatabase);
         }
 
-        // GET: ServerDatabases1/Delete/5
+        // GET: ServerDatabases2/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -137,7 +114,7 @@ namespace DBAToolV3.Controllers
             return View(serverDatabase);
         }
 
-        // POST: ServerDatabases1/Delete/5
+        // POST: ServerDatabases2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
