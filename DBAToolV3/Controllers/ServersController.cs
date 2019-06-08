@@ -20,6 +20,7 @@ namespace DBAToolV3.Controllers
         // GET: Servers
         public ActionResult Index()
         {
+          
             return View(_server.GetAll());
         }
 

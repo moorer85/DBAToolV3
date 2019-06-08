@@ -10,6 +10,8 @@ namespace DBAToolV3.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.TicketURL = "http://test.com";
+            ViewBag.EmailURL = "mailto:test.com";
             return View();
         }
 
